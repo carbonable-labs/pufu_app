@@ -41,16 +41,16 @@ const Composable = () => {
     }
   }, [selectedProject, tokenId, entryPoint, address]);
 
-  const handleProjectChange = (event) => {
+  const handleProjectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedProject(event.target.value);
     console.log("Decompose");
   }
 
-  const handleTokenIdChange = (event) => {
-    setTokenId(event.target.value);
+  const handleTokenIdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTokenId(Number(event.target.value));
   }
 
-  const handleDecomposeSubmit = (event) => {
+  const handleDecomposeSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // Insert your validation and blockchain logic here
     console.log(`Decomposed project: ${selectedProject}`);
@@ -59,17 +59,7 @@ const Composable = () => {
     write();
   }
 
-  const handleAddRecomposeInput = () => {
-    setRecomposeInputs([...recomposeInputs, '']); // add a new empty input field to the list
-  }
-
-  const handleRecomposeChange = (index) => (event) => {
-    const newRecomposeInputs = [...recomposeInputs]; // copy the current state
-    newRecomposeInputs[index] = event.target.value; // update the specific input field
-    setRecomposeInputs(newRecomposeInputs); // set the new state
-  }
-
-  const handleRecomposeSubmit = (event) => {
+  const handleRecomposeSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     write();
     // Insert your validation and blockchain logic here
