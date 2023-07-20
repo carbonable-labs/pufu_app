@@ -31,13 +31,29 @@ const Composable = () => {
       const currentAddress = projectList.filter(p => p.name == selectedProject).map(p => p.address);
       console.log("currentAddress :" + currentAddress);
       console.log("entryPoint :" + entryPoint);
-      setCallData([
-        {
-          contractAddress: pufuContractAddress,
-          entrypoint: entryPoint,
-          calldata: [currentAddress[0], tokenId, 0]
-        }
-      ]);
+
+      if (entryPoint == 'decompose') {
+        setCallData([
+          {
+            contractAddress: currentAddress[0],
+            entrypoint: 'setApprovalForAll',
+            calldata: [pufuContractAddress, 1]
+          },
+          {
+            contractAddress: pufuContractAddress,
+            entrypoint: entryPoint,
+            calldata: [currentAddress[0], tokenId, 0]
+          }
+        ]);
+      } else {
+        setCallData([
+          {
+            contractAddress: pufuContractAddress,
+            entrypoint: entryPoint,
+            calldata: [currentAddress[0], tokenId, 0]
+          }
+        ]);
+      }
     }
   }, [selectedProject, tokenId, entryPoint, address]);
 
