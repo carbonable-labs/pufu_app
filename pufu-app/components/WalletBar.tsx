@@ -1,6 +1,5 @@
 import { useAccount, useConnectors } from '@starknet-react/core'
 import { useMemo } from 'react'
-import "./WalletBar.css"
 
 function WalletConnected() {
   const { address } = useAccount()
