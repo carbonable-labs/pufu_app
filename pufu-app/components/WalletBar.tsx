@@ -11,10 +11,14 @@ function WalletConnected() {
   }, [address])
 
   return (
-    <div>
-      <span>Connected: {shortenedAddress}</span>
-      <button onClick={disconnect}>Disconnect</button>
-    </div>
+
+   
+        <div>
+          <span>Connected: {shortenedAddress}</span>
+          <button className=" bg-green-500 rounded-full" onClick={disconnect}>Disconnect</button>
+        </div>
+   
+    
   )
 }
 
@@ -26,7 +30,9 @@ function ConnectWallet() {
       <span>Choose a wallet:</span>
       {connectors.map((connector) => {
         return (
-          <button key={connector.id} onClick={() => connect(connector)}>
+
+          
+          <button className="bg-green-500 rounded-full" key={connector.id} onClick={() => connect(connector)}>
             {connector.id}
           </button>
         )
@@ -37,6 +43,9 @@ function ConnectWallet() {
 
 export default function WalletBar() {
   const { address } = useAccount()
-
-  return address ? <WalletConnected /> : <ConnectWallet />
+  const Component = address ? WalletConnected : ConnectWallet;
+  return  <div className="grid grid-flow-col place-content-around text-white w-screen top-0 left-0 fixed bg-[#0b0d13] h-16 bg-cover">
+            <div className="grid z-50 "><p className="text-2xl font-black">Pufu</p></div>
+            <Component />
+          </div>
 }
