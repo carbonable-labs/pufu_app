@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import WalletBar from '../components/WalletBar'
+import Composable from '@/components/composable'
+
 
 export default function Home() {
 
@@ -12,7 +14,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <WalletBar />
+        <div className="grid grid-flow-row gap-4">
+          <WalletBar />
+          <Composable />
+        </div>
       </main>
     </>
   )
